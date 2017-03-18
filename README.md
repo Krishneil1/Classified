@@ -102,3 +102,12 @@ Run the following cmd in your teminal
 ```
 composer require kalnoy/nestedset
 ```
+Go to mailtrap and create a new account for testing purpose. Its free and after you have set up change the following in you .env file
+```
+MAIL_DRIVER=smtp
+MAIL_HOST=mailtrap.io
+MAIL_PORT=2525
+MAIL_USERNAME=Your User Name
+MAIL_PASSWORD=Your Password
+MAIL_ENCRYPTION=null
+```
