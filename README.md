@@ -75,3 +75,17 @@ now lets create our login page. iin your console write
 php artisan make:auth
 ```
 This will generate a basic login and register page
+If you happen to get the following two errors
+```
+1/2
+PDOException in Connector.php line 68:
+SQLSTATE[HY000] [1045] Access denied for user 'homestead'@'localhost' (using password: YES)
+
+2/2
+QueryException in Connection.php line 647:
+SQLSTATE[HY000] [1045] Access denied for user 'homestead'@'localhost' (using password: YES) (SQL: select count(*) as aggregate from `users` where `email` = user@gmail.com)
+```
+Please run the following command. Make sure you close all cmd and restart cmd
+```
+php artisan config:clear
+```
