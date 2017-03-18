@@ -1,6 +1,6 @@
 # Classified
 MVC web site similar to Craig List.
-###set
+###setup
 Get the set up done. In your .env file edit the following.
 ```
 DB_CONNECTION=mysql
@@ -88,4 +88,17 @@ SQLSTATE[HY000] [1045] Access denied for user 'homestead'@'localhost' (using pas
 Please run the following command. Make sure you close all cmd and restart cmd
 ```
 php artisan config:clear
+```
+###Nested sets
+Suppose that we have a model Category; a $node variable is an instance of that model and the node that we are manipulating. It can be a fresh model or one from database.Relationships
+
+Node has following relationships that are fully functional and can be eagerly loaded:
+
+Node belongs to parent
+Node has many children
+Node has many descendants
+Please visit the link for detailed docu. https://github.com/lazychaser/laravel-nestedset
+Run the following cmd in your teminal
+```
+composer require kalnoy/nestedset
 ```
