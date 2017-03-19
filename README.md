@@ -111,3 +111,12 @@ MAIL_USERNAME=Your User Name
 MAIL_PASSWORD=Your Password
 MAIL_ENCRYPTION=null
 ```
+###Laravel Debug bar
+this to see how many queries we are running. Head over to https://github.com/barryvdh/laravel-debugbar .You will find the all the documentation you need to know about this library. Lets intall this package.
+```
+composer require barryvdh/laravel-debugbar
+```
+Once installation is completed naviagte ti config=>app.php and include the following in the package area
+```
+Barryvdh\Debugbar\ServiceProvider::class,
+``` 
