@@ -218,3 +218,32 @@ Change the name from Laravel to classified. navigate to config=>app.php and chan
 
     /*
 ```
+###Populating Areas
+Create a Model for Areas. In your console enter the following cmd
+```
+php artisan make:model Area -m
+```
+edit the create_areas_table
+```
+     */
+    public function up()
+    {
+        Schema::create('areas', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('name');
+            $table->string('slug')->unique();
+            NestedSet::columns($table);
+            $table->timestamps();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::dropIfExists('areas');
+    }
+```
