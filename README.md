@@ -247,3 +247,69 @@ edit the create_areas_table
         Schema::dropIfExists('areas');
     }
 ```
+Modify area model
+```
+<?php
+
+namespace App;
+
+namespace Kalnoy\Nestedset\NodeTrait;
+use Illuminate\Database\Eloquent\Model;
+
+class Area extends Model
+{
+    //
+    use NodeTrait;
+
+    protected $fillable=['name','slug'];
+
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
+
+}
+
+```
+create seedertable by running the following cmd
+```
+php artisan make:seeder AreaTableSeeder
+```
+Create you list of areas using array-> refer to file AreaTableSeeder.php
+update your AppServiceProvider.php for seeder to work.
+```<?php
+
+namespace App\Providers;
+
+use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\Schema;
+
+class AppServiceProvider extends ServiceProvider
+{
+    /**
+     * Bootstrap any application services.
+     *
+     * @return void
+     */
+    public function boot()
+    {
+        //
+        \App\Area::creating (function($area)
+        {
+            $prefix = $area->parent ? $area->parent->name . ' ': '';
+            $area->slug = str_slug($prefix . $area->name);
+        });
+        Schema::defaultStringLength(191);
+    }
+
+    /**
+     * Register any application services.
+     *
+     * @return void
+     */
+    public function register()
+    {
+        //
+    }
+}
+```
