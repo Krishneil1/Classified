@@ -313,8 +313,7 @@ class AppServiceProvider extends ServiceProvider
     }
 }
 ```
-###Area Selection
-Update your routes
+###Area Selection Update your routes
 ```
 Route::get('/', 'HomeController@index' );
 Auth::routes();
