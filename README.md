@@ -1,6 +1,6 @@
 # Classified
 MVC web site similar to Craig List.
-###setup
+## setup
 Get the set up done. In your .env file edit the following.
 ```
 DB_CONNECTION=mysql
@@ -85,12 +85,12 @@ SQLSTATE[HY000] [1045] Access denied for user 'homestead'@'localhost' (using pas
 QueryException in Connection.php line 647:
 SQLSTATE[HY000] [1045] Access denied for user 'homestead'@'localhost' (using password: YES) (SQL: select count(*) as aggregate from `users` where `email` = user@gmail.com)
 ```
-###Nested sets
+
 Please run the following command. Make sure you close all cmd and restart cmd
 ```
 php artisan config:clear
 ```
-###Nested sets
+## Nested sets
 Suppose that we have a model Category; a $node variable is an instance of that model and the node that we are manipulating. It can be a fresh model or one from database.Relationships
 
 Node has following relationships that are fully functional and can be eagerly loaded:
@@ -112,7 +112,7 @@ MAIL_USERNAME=Your User Name
 MAIL_PASSWORD=Your Password
 MAIL_ENCRYPTION=null
 ```
-###Laravel Debug bar
+## Laravel Debug bar
 this to see how many queries we are running. Head over to https://github.com/barryvdh/laravel-debugbar .You will find the all the documentation you need to know about this library. Lets intall this package.
 ```
 composer require barryvdh/laravel-debugbar
@@ -121,7 +121,7 @@ Once installation is completed naviagte ti config=>app.php and include the follo
 ```
 Barryvdh\Debugbar\ServiceProvider::class,
 ``` 
-###Base Template 
+## Base Template 
 create a new folder resources=>views=>layouts=>partials and inside this newly created folder create a new file _navigation.blade.php. The reason i am using underscore before navigation is to denote that this is a partial view.
  Remove the navigation section from app.blade.php and place it in _navigation.blade.php
  ```
@@ -219,7 +219,7 @@ Change the name from Laravel to classified. navigate to config=>app.php and chan
 
     /*
 ```
-###Populating Areas
+## Populating Areas
 Create a Model for Areas. In your console enter the following cmd
 ```
 php artisan make:model Area -m
@@ -314,7 +314,7 @@ class AppServiceProvider extends ServiceProvider
     }
 }
 ```
-###Area Selection 
+## Area Selection 
 Update your routes
 ```
 Route::get('/', 'HomeController@index' );
@@ -399,4 +399,4 @@ class HomeController extends Controller
     }
 }
 ```
-###Choosing and persisting an area
+## Choosing and persisting an area
