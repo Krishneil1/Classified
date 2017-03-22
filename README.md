@@ -85,6 +85,7 @@ SQLSTATE[HY000] [1045] Access denied for user 'homestead'@'localhost' (using pas
 QueryException in Connection.php line 647:
 SQLSTATE[HY000] [1045] Access denied for user 'homestead'@'localhost' (using password: YES) (SQL: select count(*) as aggregate from `users` where `email` = user@gmail.com)
 ```
+###Nested sets
 Please run the following command. Make sure you close all cmd and restart cmd
 ```
 php artisan config:clear
