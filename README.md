@@ -313,7 +313,8 @@ class AppServiceProvider extends ServiceProvider
     }
 }
 ```
-###Area Selection Update your routes
+###Area Selection 
+Update your routes
 ```
 Route::get('/', 'HomeController@index' );
 Auth::routes();
@@ -396,5 +397,5 @@ class HomeController extends Controller
         return view('home',compact('areas'));
     }
 }
-
 ```
+###Choosing and persisting an area
