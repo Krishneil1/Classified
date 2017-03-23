@@ -163,6 +163,56 @@ class AreaTableSeeder extends Seeder
                     ],
                 ],
             ],
+            [
+            'name' => 'New Zealand',
+                'children' => [
+                    [
+                        'name' => 'Auckland',
+                    ],
+                    [
+                        'name' => 'Christchurch',
+                    ],
+                    [
+                        'name' => 'Dunedin',
+                    ],
+                    [
+                        'name' => 'Gisborne',
+                    ],
+                    [
+                        'name' => 'Hamilton',
+                    ],
+                    [
+                        'name' => 'Invercargill',
+                    ],
+                    [
+                        'name' => 'Napier-Hastings',
+                    ],
+                    [
+                        'name' => 'Nelson',
+                    ],
+                    [
+                        'name' => 'New Plymouth',
+                    ],
+                    [
+                        'name' => 'Palmerston North',
+                    ],
+                    [
+                        'name' => 'Rotorua',
+                    ],
+                    [
+                        'name' => 'Tauranga',
+                    ],
+                    [
+                        'name' => 'Wellington',
+                    ],
+                    [
+                        'name' => 'Whanganui',
+                    ],
+                    [
+                        'name' => 'Whangarei',
+                    ],
+                ],
+            ],
         ];
 
         foreach ($areas as $area) {
