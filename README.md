@@ -400,3 +400,7 @@ class HomeController extends Controller
 }
 ```
 ## Choosing and persisting an area
+make new controller
+```
+php artisan make:controller User\\AreaController
+```
