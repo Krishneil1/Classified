@@ -418,7 +418,9 @@ class AreaController extends Controller
     //
     public function store()
     {
-
+        session()->put('area',$area->slug);
+        //redirect to category index
+        return redirect ()->back();
     }
 }
 
@@ -470,4 +472,38 @@ update your views in home.blade.php
     </div>
 @endsection
 
+```
+Create a nw folder inside your Http as ViewComposer and run the following command
+```
+php artisan make:provider ComposerServiceProvider
+```
+Head over to app.php inside you config file and register is service.
+```
+App\Providers\ComposerServiceProvider::class,
+```
+Go to ComposerServiceProvider.php and update the boot function. In this case we want to view all the areas in our view
+Update your AreaComposer
+```
+ public function compose(View $view)
+    {
+        //Australia in Config
+
+        if(!$this->area)
+        {
+            $this->area = \App\Area::where('slug', session()->get('area',config()->get('classified.defaults.area')))->first();
+        }
+        return $view->with('area', $this->area);
+    }
+```
+now if you look at the number of queries run there is more than one. Now you avoid this we are going to use singlton method.Update your ComposerServiceProvider.
+```
+public function register()
+    {
+        //
+        $this->app->singleton(AreaComposer::class);
+    }
+```
+Now that we have got that update you navigations page.
+```
+ {{ config('app.name', 'Laravel') }} ({{ $area->name }})
 ```
