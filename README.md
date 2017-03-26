@@ -690,7 +690,7 @@ now create a view for category. Create a new folder as categories and file index
 @endsection
 
 ```
-make categories accessible via link
+make categories accessable via link
 ```
   <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
