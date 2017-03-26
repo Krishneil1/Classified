@@ -580,3 +580,120 @@ and run the following commands
 ```
 php artisan db:seed -vvv
 ```
+## Listing categories
+Create an new controller
+```
+php artisan make:controller Category\\CategoryController
+```
+update categoryController.php
+```
+<?php
+
+namespace App\Http\Controllers\Category;
+
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Area;
+
+class CategoryController extends Controller
+{
+    //
+    public function index(Area $area)//this will be same for all of our controllers
+    {
+        dd($area);
+    }
+}
+
+```
+Implement methods in your routes
+```
+<?php
+
+/*
+|--------------------------------------------------------------------------
+| Web Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register web routes for your application. These
+| routes are loaded by the RouteServiceProvider within a group which
+| contains the "web" middleware group. Now create something great!
+|
+*/
+
+Route::get('/', 'HomeController@index' );
+
+Auth::routes();
+
+Route::get('user/area/{area}','User\AreaController@store')->name('user.area.store');
+
+Route::group(['prefix' => '/{area}'], function (){
+    /**
+    *Category
+    */
+    Route::group(['prefix' =>'/categories'],function(){
+        Route::get('/','Category\CategoryController@index')->name('category.index');
+
+    });
+});
+/*Route::get('/', function () {
+    return view('welcome');
+});
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index');
+*/
+```
+update catogory controller
+```
+<?php
+
+namespace App\Http\Controllers\Category;
+
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Area;
+
+class CategoryController extends Controller
+{
+    //
+    public function index(Area $area)//this will be same for all of our controllers
+    {
+        // now we need to grab all categorys  and pass them
+        //eager load listings
+        $categories = Category::get()->toTree();
+        return view('categories.index',compact('categories'));
+    }
+}
+
+```
+now create a view for category. Create a new folder as categories and file index.blade.php
+```
+@extends('layouts.app')
+
+@section('content')
+    <div class="container">
+        <div class="row">
+                @foreach ($categories as $category)
+                    <div class="col-md-4">
+                        <h5> {{ $category->name }}</h5>
+                        <hr>
+
+                        @foreach($category->children as $sub)
+                            <h5><a href ="#">{{$sub->name}}</a>(x)</h5>
+                        @endforeach
+
+                    </div>
+                @endforeach
+            </div>
+    </div>
+@endsection
+
+```
+make categories accessible via link
+```
+  <!-- Left Side Of Navbar -->
+                    <ul class="nav navbar-nav">
+                        <li><a href="{{ route('category.index', [$area])  }}">Categories</a></li>
+                    </ul>
+```
