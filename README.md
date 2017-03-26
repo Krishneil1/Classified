@@ -507,3 +507,76 @@ Now that we have got that update you navigations page.
 ```
  {{ config('app.name', 'Laravel') }} ({{ $area->name }})
 ```
+## Populating Categories
+Create a new model for categories and migration model.
+```
+php artisan make:model Category -m
+```
+Implement the need columns for the table.
+```
+<?php
+
+use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
+Use Kalnoy\Nestedset\Nestedset;
+
+class CreateCategoriesTable extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create('categories', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('name');
+            $table->string('slug')->unique();
+            $table->float('price')->default(0);
+            NestedSet::columns($table);
+            $table->timestamps();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::dropIfExists('categories');
+    }
+}
+
+```
+Migrate the table
+```
+php artisan migrate
+```
+lets create a seeder for category table
+```
+php artisan make:seeder CategoryTableSeeder
+```
+update our category.php file
+```
+use NodeTrait;
+
+    protected $fillable=['name','slug'];
+
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
+
+```
+I like to re create my db seed or first TRUNCATE TABLE
+```
+TRUNCATE TABLE table_name
+```
+and run the following commands
+```
+php artisan db:seed -vvv
+```

@@ -20,7 +20,13 @@ class AppServiceProvider extends ServiceProvider
             $prefix = $area->parent ? $area->parent->name . ' ': '';
             $area->slug = str_slug($prefix . $area->name);
         });
-        Schema::defaultStringLength(191);
+
+        \App\Category::creating (function($category)
+        {
+            $prefix = $category->parent ? $category->parent->name . ' ': '';
+            $category->slug = str_slug($prefix . $category->name);
+        });
+        Schema::defaultStringLength(191);//Added this beacuse of errors in setup
     }
 
     /**
